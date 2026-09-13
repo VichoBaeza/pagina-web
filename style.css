@@ -17,3 +17,7 @@ body {
 
 }
 
+.card-img-top {
+    height: 180px;         /* Altura fija deseada */
+    object-fit: cover;     /* Recorta y llena sin estirar ni deformar */
+}
