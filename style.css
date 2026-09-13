@@ -1,0 +1,19 @@
+/* se aplica a todo el código */
+body {
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* tipografía */
+
+    background-color: #1a1a2e; /* color de fondo  */
+
+    color: #e0e0e0; /* color de texto */
+
+    margin: 0;
+
+    padding: 20px;
+
+    display: flex;
+
+    justify-content: center;
+
+}
+
