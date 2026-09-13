@@ -30,7 +30,7 @@ btnGirar.addEventListener("click", function() {
         return; // Detiene el código si no le alcanza
     }
 
-    // Calculo / Azar (Simular la ruleta con Math.random)
+    // Azar (Simular la ruleta con Math.random)
     const numero = Math.floor(Math.random() * 37);
 
     // Si es par es rojo, si es impar es negro
