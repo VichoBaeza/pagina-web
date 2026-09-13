@@ -2,6 +2,53 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Casino67aura</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruleta - Casino67aura</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+<body>
+
+    <!-- Menu -->
+    <nav>
+        <a href="inicio.html">Inicio</a> | 
+        <a href="ruleta.html">Ruleta</a> | 
+        <a href="index.html">Salir</a>
+    </nav>
+
+    <hr>
+
+    <h1>Juego de la Ruleta</h1>
+
+    <!-- Dato simulado: Saldo inicial -->
+    <p><strong>Saldo actual:</strong> $<span id="saldo">10000</span></p>
+
+    <!-- Mensajes de aviso / error -->
+    <p id="mensaje" style="color: red; font-weight: bold;"></p>
+
+    <!-- Controles de la apuesta -->
+    <div>
+        <label for="monto">¿Cuánto quieres apostar?</label><br>
+        <input type="number" id="monto" placeholder="Ej: 500"><br><br>
+
+        <label for="color">Elige un color:</label><br>
+        <select id="color">
+            <option value="rojo">Rojo (gana el doble)</option>
+            <option value="negro">Negro (gana el doble)</option>
+        </select><br><br>
+
+        <button id="btnGirar">Girar Ruleta</button>
+    </div>
+
+    <hr>
+
+    <!-- Resultado en pantalla -->
+    <h3>Resultado: <span id="resultado">Esperando apuesta...</span></h3>
+
+    <!-- Historial simple -->
+    <h4>Historial de jugadas:</h4>
+    <ul id="historial"></ul>
+
+    <!-- Enlace al archivo JS -->
+    <script src="js/ruleta.js"></script>
+</body>
+</html>
