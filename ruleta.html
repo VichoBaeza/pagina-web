@@ -3,52 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruleta - Casino67aura</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Mesa de Ruleta - Casino 67aura</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="diseñoDePágina.css">
 </head>
 <body>
-
-    <!-- Menu -->
-    <nav>
-        <a href="inicio.html">Inicio</a> | 
-        <a href="index.html">Salir</a> |
-        <a href="blackjack.html">Blackjack</a>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0f172a;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-danger fw-bold" href="index.html">Casino 67aura</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="ruleta.html">Mesa de Ruleta</a></li>
+                    <li class="nav-item"><a class="nav-link text-warning ms-2" href="registro.html">Crear Cuenta</a></li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <hr>
+    <div class="container casino-container text-center">
+        <header class="mb-4">
+            <h1>Mesa de Ruleta</h1>
+        </header>
+        
+        <main>
+            <div class="d-flex justify-content-center align-items-center gap-4 mb-4 flex-wrap">
+                <p class="saldo-box mb-0"><strong>Saldo:</strong> <span id="saldoUsuario">1000</span> fichas</p>
+                
+                <form id="formDeposito" class="d-flex gap-2">
+                    <input type="number" id="deposito" class="form-control" placeholder="Añadir fichas" required min="1" style="width: 150px;">
+                    <button type="submit" class="btn btn-success">Depositar</button>
+                </form>
+            </div>
+            
+            <div id="mensajeExito" class="alert alert-success d-none mx-auto mb-4" style="max-width: 400px;"></div>
 
-    <h1>Juego de la Ruleta</h1>
+            <img src="Ruleta_Francesa_rueda.jpg" alt="Ruleta Europea" class="img-fluid rounded mb-5" style="max-width: 500px;">
 
-    <!-- Dato simulado: Saldo inicial -->
-    <p><strong>Saldo actual:</strong> $<span id="saldo">10000</span></p>
-
-    <!-- Mensajes de aviso / error -->
-    <p id="mensaje" style="color: red; font-weight: bold;"></p>
-
-    <!-- Controles de la apuesta -->
-    <div>
-        <label for="monto">¿Cuánto quieres apostar?</label><br>
-        <input type="number" id="monto" placeholder="Ej: 500"><br><br>
-
-        <label for="color">Elige un color:</label><br>
-        <select id="color">
-            <option value="rojo">Rojo (gana el doble)</option>
-            <option value="negro">Negro (gana el doble)</option>
-        </select><br><br>
-
-        <button id="btnGirar">Girar Ruleta</button>
+        
+            <section class="mt-4">
+                <h2>Últimas Apuestas Simuladas</h2>
+                <div class="table-responsive">
+                    <table class="table table-dark table-bordered mt-3 mx-auto" style="max-width: 700px;">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Apuesta</th>
+                                <th>Monto</th>
+                                <th>Resultado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Al Rojo</td>
+                                <td>50</td>
+                                <td class="text-success">Ganada (+50)</td>
+                            </tr>
+                            <tr>
+                                <td>Número 8</td>
+                                <td>10</td>
+                                <td class="text-danger">Perdida (-10)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
     </div>
-
-    <hr>
-
-    <!-- Resultado en pantalla -->
-    <h3>Resultado: <span id="resultado">Esperando apuesta...</span></h3>
-
-    <!-- Historial simple -->
-    <h4>Historial de jugadas:</h4>
-    <ul id="historial"></ul>
-
-    <!-- Enlace al archivo JS -->
-    <script src="js/ruleta.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="ruleta.js"></script>
 </body>
 </html>
