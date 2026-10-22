@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hub de Juegos - Casino 67aura</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="diseñoDePágina.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #050914;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-danger fw-bold" href="index.html">Casino 67aura</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="hub.html">Catálogo de Juegos</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-casino text-white ms-2" href="registro.html">Registrarse</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container casino-container">
+        <header class="text-center mb-5">
+            <h1>Lobby de Juegos</h1>
+            <p class="lead text-secondary">Selecciona tu juego preferido y empieza a apostar.</p>
+        </header>
+
+        <main class="row g-4">
+            <!-- Juego 1: Ruleta Europea (Disponible) -->
+            <div class="col-md-6 col-lg-4">
+                <div class="form-container h-100 d-flex flex-column justify-content-between text-center">
+                    <div>
+                        <img src="Ruleta_Francesa_rueda.jpg" alt="Ruleta Europea" class="img-fluid rounded mb-3" style="height: 180px; object-fit: cover; width: 100%;">
+                        <h3 class="mb-2">Ruleta Europea</h3>
+                        <p class="text-secondary small">Apuesta a tus números de la suerte, colores o par/impar en la mesa clásica de 37 casillas.</p>
+                    </div>
+                    <a href="ruleta.html" class="btn btn-casino w-100 mt-3">Jugar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Juego 2: Blackjack (Próximamente) -->
+            <div class="col-md-6 col-lg-4">
+                <div class="form-container h-100 d-flex flex-column justify-content-between text-center opacity-75">
+                    <div>
+                        <div class="d-flex align-items-center justify-content-center bg-dark text-warning rounded mb-3" style="height: 180px; border: 1px solid #334155;">
+                            <span class="fs-1">♠️ 🃏 ♥️</span>
+                        </div>
+                        <h3 class="mb-2">Blackjack 21</h3>
+                        <p class="text-secondary small">Compite contra el crupier simulado para sumar 21 sin pasarte. Juego en desarrollo.</p>
+                    </div>
+                    <button class="btn btn-secondary w-100 mt-3" disabled>Próximamente</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
