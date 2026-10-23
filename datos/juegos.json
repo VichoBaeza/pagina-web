@@ -41,9 +41,9 @@
   },
   {
     "id": 5,
-    "nombre": "Baccarat VIP",
-    "categoria": "Cartas",
-    "descripcion": "Apuesta al Punto, a la Banca o al Empate en este clásico juego de casino rápido.",
+    "nombre": "Crash",
+    "categoria": "Apuestas",
+    "descripcion": "Apuesta tus tickets y sacalos cuando quieras, mientras mas tiempo los dejes mas ganaras pero en cualquier momento puede estrellarse y perderlo todo.",
     "estado": "proximamente",
     "minApuesta": 100,
     "imagen": "",
