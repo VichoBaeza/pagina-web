@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "nombre": "Ruleta Europea",
+    "categoria": "Mesa",
+    "descripcion": "Apuesta a tus números de la suerte, colores o par/impar en la mesa clásica de 37 casillas.",
+    "estado": "disponible",
+    "minApuesta": 10,
+    "imagen": "Ruleta_Francesa_rueda.jpg",
+    "url": "ruleta.html"
+  },
+  {
+    "id": 2,
+    "nombre": "Blackjack 21",
+    "categoria": "Cartas",
+    "descripcion": "Compite contra el crupier simulado para sumar 21 sin pasarte.",
+    "estado": "proximamente",
+    "minApuesta": 20,
+    "imagen": "",
+    "url": "#"
+  },
+  {
+    "id": 3,
+    "nombre": "Tragamonedas 67Aura",
+    "categoria": "Slots",
+    "descripcion": "Gira los rodillos virtuales para combinar símbolos y ganar multiplicadores de fichas.",
+    "estado": "proximamente",
+    "minApuesta": 5,
+    "imagen": "",
+    "url": "#"
+  },
+  {
+    "id": 4,
+    "nombre": "Poker Texas Hold'em",
+    "categoria": "Cartas",
+    "descripcion": "Mesa de poker simulada para poner a prueba tu estrategia con combinaciones de cartas.",
+    "estado": "proximamente",
+    "minApuesta": 50,
+    "imagen": "",
+    "url": "#"
+  },
+  {
+    "id": 5,
+    "nombre": "Baccarat VIP",
+    "categoria": "Cartas",
+    "descripcion": "Apuesta al Punto, a la Banca o al Empate en este clásico juego de casino rápido.",
+    "estado": "proximamente",
+    "minApuesta": 100,
+    "imagen": "",
+    "url": "#"
+  },
+  {
+    "id": 6,
+    "nombre": "Craps (Dados)",
+    "categoria": "Dados",
+    "descripcion": "Lanza los dados y realiza apuestas de pase o no pase en una mesa simulada.",
+    "estado": "proximamente",
+    "minApuesta": 15,
+    "imagen": "",
+    "url": "#"
+  }
+]

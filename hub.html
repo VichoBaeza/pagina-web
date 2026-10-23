@@ -6,6 +6,8 @@
     <title>Hub de Juegos - Casino 67aura</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="diseñoDePágina.css">
+    <!-- Carga de Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #050914;">
@@ -17,48 +19,141 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="hub.html">Catálogo de Juegos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="hub.html">Catálogo de Juegos</a></li>
                     <li class="nav-item"><a class="nav-link btn btn-casino text-white ms-2" href="registro.html">Registrarse</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container casino-container">
-        <header class="text-center mb-5">
+    <!-- Componente Alpine.js -->
+    <div class="container casino-container" x-data="hubCasino()" x-init="cargarJuegos()">
+        <header class="text-center mb-4">
             <h1>Lobby de Juegos</h1>
-            <p class="lead text-secondary">Selecciona tu juego preferido y empieza a apostar.</p>
+            <p class="lead text-secondary">Explora nuestro catálogo de juegos con créditos virtuales.</p>
+            
+            <!-- Botón para Sección de Ayuda Condicional (Requerimiento 6) -->
+            <button @click="mostrarAyuda = !mostrarAyuda" class="btn btn-outline-warning btn-sm mb-3">
+                <span x-text="mostrarAyuda ? 'Ocultar Ayuda' : 'Ver Instrucciones del Hub'"></span>
+            </button>
+
+            <!-- Sección de Ayuda Condicional con x-show -->
+            <div x-show="mostrarAyuda" x-transition class="alert alert-info max-w-lg mx-auto text-start" style="max-width: 600px;">
+                <h5 class="alert-heading fw-bold">Instrucciones:</h5>
+                <ul class="mb-0 small">
+                    <li>Utiliza el buscador para filtrar juegos por nombre o categoría en tiempo real.</li>
+                    <li>Puedes simular la búsqueda de juegos futuros o entrar a la Ruleta activa.</li>
+                    <li>Los cambios e interacciones no recargan la página.</li>
+                </ul>
+            </div>
         </header>
 
-        <main class="row g-4 justify-content-center">
-            <!-- Juego 1: Ruleta Europea (Disponible) -->
-            <div class="col-md-6 col-lg-4">
-                <div class="form-container h-100 d-flex flex-column justify-content-between text-center">
-                    <div>
-                        <img src="Ruleta_Francesa_rueda.jpg" alt="Ruleta Europea" class="img-fluid rounded mb-3" style="height: 180px; object-fit: cover; width: 100%;">
-                        <h3 class="mb-2">Ruleta Europea</h3>
-                        <p class="text-secondary small">Apuesta a tus números de la suerte, colores o par/impar en la mesa clásica de 37 casillas.</p>
-                    </div>
-                    <a href="ruleta.html" class="btn btn-casino w-100 mt-3">Jugar Ahora</a>
-                </div>
+        <!-- Barra de Búsqueda Reactiva con x-model (Requerimiento 5) -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-6">
+                <input type="text" 
+                       class="form-control form-control-lg" 
+                       placeholder="Buscar juego por nombre o categoría..." 
+                       x-model="busqueda">
             </div>
+        </div>
 
-            <!-- Juego 2: Blackjack (Próximamente) -->
-            <div class="col-md-6 col-lg-4">
-                <div class="form-container h-100 d-flex flex-column justify-content-between text-center opacity-75">
-                    <div>
-                        <div class="d-flex align-items-center justify-content-center bg-dark text-warning rounded mb-3" style="height: 180px; border: 1px solid #334155;">
-                            <span class="fs-1">♠️ 🃏 ♥️</span>
-                        </div>
-                        <h3 class="mb-2">Blackjack 21</h3>
-                        <p class="text-secondary small">Compite contra el crupier simulado para sumar 21 sin pasarte. Juego en desarrollo.</p>
-                    </div>
-                    <button class="btn btn-secondary w-100 mt-3" disabled>Próximamente</button>
-                </div>
+        <!-- Manejo de Estado de Carga (Requerimiento 8) -->
+        <div x-show="cargando" class="text-center my-5">
+            <div class="spinner-border text-warning" role="status">
+                <span class="visually-hidden">Cargando...</span>
             </div>
+            <p class="mt-2 text-secondary">Cargando catálogo de juegos desde JSON...</p>
+        </div>
+
+        <!-- Manejo de Estado de Error (Requerimiento 8) -->
+        <div x-show="error" class="alert alert-danger text-center my-4" x-cloak>
+            <p class="mb-0">⚠️ Error al cargar el catálogo de juegos. Verifica la ruta o la conexión al servidor.</p>
+        </div>
+
+        <!-- Manejo de Estado Vacío (Requerimiento 8) -->
+        <div x-show="!cargando && !error && juegosFiltrados.length === 0" class="text-center my-5" x-cloak>
+            <p class="fs-4 text-warning">No se encontraron juegos que coincidan con "<span x-text="busqueda"></span>".</p>
+            <button @click="busqueda = ''" class="btn btn-casino btn-sm">Limpiar Búsqueda</button>
+        </div>
+
+        <!-- Listado Dinámico con x-for y :key (Requerimiento 4) -->
+        <main class="row g-4 justify-content-center" x-show="!cargando && !error && juegosFiltrados.length > 0">
+            <template x-for="juego in juegosFiltrados" :key="juego.id">
+                <div class="col-md-6 col-lg-4">
+                    <div class="form-container h-100 d-flex flex-column justify-content-between text-center"
+                         :class="{ 'opacity-75': juego.estado === 'proximamente' }">
+                        <div>
+                            <!-- Renderizado de Imagen o Icono dinámico -->
+                            <template x-if="juego.imagen">
+                                <img :src="juego.imagen" :alt="juego.nombre" class="img-fluid rounded mb-3" style="height: 180px; object-fit: cover; width: 100%;">
+                            </template>
+                            <template x-if="!juego.imagen">
+                                <div class="d-flex align-items-center justify-content-center bg-dark text-warning rounded mb-3" style="height: 180px; border: 1px solid #334155;">
+                                    <span class="fs-1">🎰 🃏 🎲</span>
+                                </div>
+                            </template>
+
+                            <h3 class="mb-1" x-text="juego.nombre"></h3>
+                            <span class="badge bg-secondary mb-2" x-text="juego.categoria"></span>
+                            <p class="text-secondary small" x-text="juego.descripcion"></p>
+                        </div>
+
+                        <div>
+                            <p class="small mb-2 text-warning">Apuesta Mínima: <strong x-text="juego.minApuesta + ' fichas'"></strong></p>
+                            <template x-if="juego.estado === 'disponible'">
+                                <a :href="juego.url" class="btn btn-casino w-100 mt-2">Jugar Ahora</a>
+                            </template>
+                            <template x-if="juego.estado === 'proximamente'">
+                                <button class="btn btn-secondary w-100 mt-2" disabled>Próximamente</button>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </main>
     </div>
 
+    <!-- Script del Componente Alpine.js -->
+    <script>
+        function hubCasino() {
+            return {
+                juegos: [],
+                busqueda: '',
+                cargando: true,
+                error: false,
+                mostrarAyuda: false,
+
+                // Carga de información asincrónica mediante fetch() (Requerimiento 3)
+                async cargarJuegos() {
+                    this.cargando = true;
+                    this.error = false;
+                    try {
+                        const respuesta = await fetch('datos/juegos.json');
+                        if (!respuesta.ok) throw new Error('Error al obtener la información');
+                        this.juegos = await respuesta.json();
+                    } catch (e) {
+                        console.error("Error en fetch:", e);
+                        this.error = true;
+                    } finally {
+                        this.cargando = false;
+                    }
+                },
+
+                // Filtrado en memoria sin volver a consultar el servidor (Requerimiento 5)
+                get juegosFiltrados() {
+                    if (this.busqueda.trim() === '') {
+                        return this.juegos;
+                    }
+                    const termino = this.busqueda.toLowerCase();
+                    return this.juegos.filter(juego => 
+                        juego.nombre.toLowerCase().includes(termino) || 
+                        juego.categoria.toLowerCase().includes(termino)
+                    );
+                }
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
