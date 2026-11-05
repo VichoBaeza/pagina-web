@@ -20,7 +20,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link active" href="hub.html">Catálogo de Juegos</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-casino text-white ms-2" href="registro.html">Registrarse</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-casino text-white ms-2" href="registro.html">Registrarse / Iniciar sesion</a></li>
                 </ul>
             </div>
         </div>
@@ -29,7 +29,7 @@
     <div class="container casino-container" x-data="hubCasino()" x-init="cargarJuegos()">
         <header class="text-center mb-4">
             <h1>Lobby de Juegos</h1>
-            <p class="lead text-secondary">Explora nuestro catálogo de juegos con créditos virtuales.</p>
+            <p class="lead text-white">Explora nuestro catálogo de juegos con créditos virtuales.</p>
             
             <button @click="mostrarAyuda = !mostrarAyuda" class="btn btn-outline-warning btn-sm mb-3">
                 <span x-text="mostrarAyuda ? 'Ocultar Ayuda' : 'Ver Instrucciones del Hub'"></span>
@@ -58,7 +58,7 @@
             <div class="spinner-border text-warning" role="status">
                 <span class="visually-hidden">Cargando...</span>
             </div>
-            <p class="mt-2 text-secondary">Cargando catálogo de juegos desde JSON...</p>
+            <p class="mt-2 text-white">Cargando catálogo de juegos desde JSON...</p>
         </div>
 
         <div x-show="error" class="alert alert-danger text-center my-4" x-cloak>
@@ -87,7 +87,7 @@
 
                             <h3 class="mb-1" x-text="juego.nombre"></h3>
                             <span class="badge bg-secondary mb-2" x-text="juego.categoria"></span>
-                            <p class="text-secondary small" x-text="juego.descripcion"></p>
+                            <p class="text-white small" x-text="juego.descripcion"></p>
                         </div>
 
                         <div>

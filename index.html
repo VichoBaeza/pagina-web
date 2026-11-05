@@ -6,6 +6,9 @@
     <title>Casino 67aura - Inicio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="diseñoDePágina.css">
+    
+    <script defer src="/app.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #050914;">
@@ -19,7 +22,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
                     <li class="nav-item"><a class="nav-link" href="hub.html">Catálogo de Juegos</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-casino text-white ms-2" href="registro.html">Registrarse</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-casino text-white ms-2" href="registro.html">Registrarse / Iniciar sesion</a></li>
                 </ul>
             </div>
         </div>
@@ -41,6 +44,29 @@
                 <div class="alert alert-warning mt-3">
                     <strong>Juego Responsable:</strong> No utilizamos dinero real.
                 </div>
+            </section>
+
+            <section class="col-md-8 mx-auto text-center mb-5" x-data="listaUsuarios" x-init="cargar()">
+                <h3 class="mb-3">Usuarios Registrados en el Sistema</h3>
+                
+                <p x-show="cargando" class="text-info">Cargando datos...</p>
+                <p x-show="error" class="text-danger" x-text="error"></p>
+                <p x-show="!cargando && !error && usuarios.length === 0" class="text-muted">
+                    Todavía no hay cuentas registradas.
+                </p>
+
+                <ul class="list-group mb-3 text-start" x-show="!cargando && !error && usuarios.length > 0">
+                    <template x-for="persona in usuarios" :key="persona.usuario">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <span x-text="persona.usuario"></span>
+                            <span class="badge bg-success" x-text="persona.activo ? 'activo' : 'inactivo'"></span>
+                        </li>
+                    </template>
+                </ul>
+
+                <button type="button" class="btn btn-outline-secondary" @click="cargar()" :disabled="cargando">
+                    Actualizar lista
+                </button>
             </section>
         </main>
     </div>
